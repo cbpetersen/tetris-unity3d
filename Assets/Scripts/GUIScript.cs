@@ -34,7 +34,6 @@ public class GUIScript : MonoBehaviour
     Rect blockRect;
     Rect avgBlockRect;
     Rect speedRect;
-    Rect lookAheadRect;
     Rect autoplayRect;
     float alignLabelLeft;
     bool gameover = false;
@@ -74,10 +73,7 @@ public class GUIScript : MonoBehaviour
         blockRect = new Rect(alignLabelLeft, 180, labelwidth, labelHieght);
         avgBlockRect = new Rect(alignLabelLeft, 200, labelwidth, labelHieght);
         speedRect = new Rect(alignLabelLeft, 260, labelwidth, labelHieght);
-        lookAheadRect = new Rect(alignLabelLeft, 290, labelwidth, labelHieght);
         autoplayRect = new Rect(alignLabelLeft, 310, labelwidth, labelHieght);
-
-
         creditRect = new Rect(alignLabelLeft, 350, labelwidth, labelHieght);
         creditwwwRect = new Rect(alignLabelLeft, 370, labelwidth, labelHieght);
     }
@@ -111,7 +107,6 @@ public class GUIScript : MonoBehaviour
             GUI.Label(speedRect, "Speed: " + ((int)speedHSliderValue));
 
             blockHSliderValue = UnityEngine.GUI.HorizontalSlider(new Rect(Screen.width / 3 - 100, 295, 95, 30), blockHSliderValue, 0.0f, 3.0f);
-            GUI.Label(lookAheadRect, "Look ahead: " + ((int)blockHSliderValue));
             if (autoplayBool)
                 autoplayBool = GUI.Toggle(autoplayRect, autoplayBool, "Auto play ON");
             else
@@ -165,10 +160,6 @@ public class GUIScript : MonoBehaviour
             GUI.Box(new Rect(alignLabelLeft - 10, 260, 200, 220), "");
             speedHSliderValue = UnityEngine.GUI.HorizontalSlider(new Rect(Screen.width / 3 - 160, 265, 95, 30), speedHSliderValue, 1.0f, 1000.0f);
             GUI.Label(speedRect, "Speed: " + ((int)speedHSliderValue));
-
-            blockHSliderValue = UnityEngine.GUI.HorizontalSlider(new Rect(Screen.width / 3 - 160, 295, 95, 30), blockHSliderValue, 0.0f, 3.0f);
-            GUI.Label(lookAheadRect, "Look ahead: " + ((int)blockHSliderValue));
-            blockHSliderValue = 0;
 
             int consoleLength = linesInString(stringToEdit) * 15;
             scrollViewVector.y = consoleLength;
