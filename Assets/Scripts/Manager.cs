@@ -81,7 +81,7 @@ public class Manager : MonoBehaviour
             }
         }
 
-        this.gui.updateScore(this.gameManager.GameStats);
+        this.gui.UpdateScore(this.gameManager.GameStats);
     }
 
     private void FixedUpdate()
@@ -113,7 +113,7 @@ public class Manager : MonoBehaviour
         Debug.Log ("Game Over!");
         Debug.Log (this.gameManager.GameStats.Fitness);
 
-        this.gui.toogleGameover();
+        this.gui.ToogleGameover();
         yield return new WaitForSeconds(2);
 
         SceneManager.LoadScene("game");
