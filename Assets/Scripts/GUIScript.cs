@@ -4,43 +4,42 @@
 // ReSharper disable once CheckNamespace
 public class GUIScript : MonoBehaviour
 {
-    private int rowscleared;
-    private float startTime;
-    private float rowsPerMin = 0;
-    private float oneRowsCleared;
-    private float twoRowsCleared;
-    private float threeRowsCleared;
-    private float fourRowsCleared;
-    private float points = 0;
-    private int fitness;
-    private int block = 0;
-    private float blockSpawned = 1;
+    private bool gameover;
     private float avgBlockPerMin;
-    private static float speedHSliderValue = 1;
-    private static float blockHSliderValue;
     private float avgRowsPerMin;
+    private float blockSpawned = 1;
+    private float fourRowsCleared;
+    private float labelLeftMargin;
+    private float oneRowsCleared;
+    private float points = 0;
+    private float rowsPerMin = 0;
+    private float startTime;
+    private float threeRowsCleared;
     private float time;
-    private Rect timeRunningRect;
-    private Rect oneRowRect;
-    private Rect twoRowRect;
-    private Rect threeRowRect;
-    private Rect fourRowRect;
-    private Rect totalRowRect;
-    private Rect fitnessRowRect;
+    private float twoRowsCleared;
+    private int block = 0;
+    private int fitness;
+    private int rowscleared;
+    private Rect autoplayRect;
+    private Rect avgBlockRect;
     private Rect avgRowRect;
     private Rect blockRect;
-    private Rect avgBlockRect;
-    private Rect speedLabelRect;
-    private Rect autoplayRect;
-    private float labelLeftMargin;
-    private bool gameover;
-    private Rect creditwwwRect;
     private Rect creditRect;
-    private static bool autoplayBool = true;
+    private Rect creditwwwRect;
+    private Rect fitnessRowRect;
+    private Rect fourRowRect;
     private Rect gameoverRect;
+    private Rect oneRowRect;
+    private Rect settingsBoxRect;
+    private Rect speedLabelRect;
     private Rect speedRect;
     private Rect statsBoxRect;
-    private Rect settingsBoxRect;
+    private Rect threeRowRect;
+    private Rect timeRunningRect;
+    private Rect totalRowRect;
+    private Rect twoRowRect;
+    private static bool autoplayBool = true;
+    private static float speedHSliderValue = 1;
 
     // ReSharper disable once UnusedMember.Local
     private void Start()
@@ -107,7 +106,7 @@ public class GUIScript : MonoBehaviour
         GUI.Label(this.avgRowRect, "Avg rows per min: " + (int)this.avgRowsPerMin);
 
         GUI.Box(this.settingsBoxRect, string.Empty);
-        speedHSliderValue = GUI.HorizontalSlider(this.speedRect, speedHSliderValue, 1.0f, 1000.0f);
+        speedHSliderValue = GUI.HorizontalSlider(this.speedRect, speedHSliderValue, 1.0f, 100.0f);
         GUI.Label(this.speedLabelRect, "Speed: " + (int)speedHSliderValue);
         GUI.Label(this.creditRect, "\u00a9 Christoffer Bo Petersen");
         GUI.Label(this.creditwwwRect, "www.cb-p.dk");

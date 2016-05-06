@@ -6,6 +6,7 @@ using Tetris.Engine;
 using Tetris.Engine.AI;
 using Tetris.Engine.AI.Algorithms;
 using Tetris.Engine.AI.Algorithms.Weights;
+using Tetris.Engine.GameStates;
 
 using UnityEngine.SceneManagement;
 
@@ -18,6 +19,8 @@ public class Manager : MonoBehaviour
     private GUIScript gui;
 
     private int blockSpawned = -1;
+    private bool gameover = false;
+
     public GameObject[][] Blocks;
     public GameObject Cube;
     public Transform LeftWall;
@@ -86,6 +89,19 @@ public class Manager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        for (int i = 0; i < this.gui.GetGameSpeed(); i++)
+        {
+            if (this.gameover)
+            {
+                return;
+            }
+
+            this.GameStep();
+        }
+    }
+
+    private void GameStep()
+    {
         if (this.moveIterator != null && this.moveIterator.MoveNext())
         {
             this.gameManager.MoveBlock((Move)this.moveIterator.Current);
@@ -100,6 +116,7 @@ public class Manager : MonoBehaviour
 
         if (this.gameManager.GameState.IsGameOver())
         {
+            this.gameover = true;
             this.StartCoroutine(this.GameOver());
         }
         else
