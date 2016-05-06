@@ -88,7 +88,7 @@ public class Manager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        for (int i = 0; i < this.gui.GetGameSpeed(); i++)
+        for (var i = 0; i < this.gui.GetGameSpeed(); i++)
         {
             if (this.gameover)
             {
@@ -125,6 +125,11 @@ public class Manager : MonoBehaviour
         {
             this.gameManager.OnGameLoopStep();
         }
+    }
+
+    public void MoveBlock(Move move)
+    {
+        this.gameManager.MoveBlock(move);
     }
 
     public IEnumerator GameOver()
