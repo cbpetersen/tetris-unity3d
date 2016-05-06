@@ -106,7 +106,7 @@ public class GUIScript : MonoBehaviour
         GUI.Label(this.avgRowRect, "Avg rows per min: " + (int)this.avgRowsPerMin);
 
         GUI.Box(this.settingsBoxRect, string.Empty);
-        speedHSliderValue = GUI.HorizontalSlider(this.speedRect, speedHSliderValue, 1.0f, 100.0f);
+        speedHSliderValue = GUI.HorizontalSlider(this.speedRect, speedHSliderValue, 1.0f, 200.0f);
         GUI.Label(this.speedLabelRect, "Speed: " + (int)speedHSliderValue);
         GUI.Label(this.creditRect, "\u00a9 Christoffer Bo Petersen");
         GUI.Label(this.creditwwwRect, "www.cb-p.dk");

@@ -6,7 +6,6 @@ using Tetris.Engine;
 using Tetris.Engine.AI;
 using Tetris.Engine.AI.Algorithms;
 using Tetris.Engine.AI.Algorithms.Weights;
-using Tetris.Engine.GameStates;
 
 using UnityEngine.SceneManagement;
 
@@ -14,12 +13,12 @@ using Move = Tetris.Engine.Move;
 
 public class Manager : MonoBehaviour
 {
-    private Tetris.Engine.AI.Engine ai;
+    private Engine ai;
     private GameManager gameManager;
     private GUIScript gui;
 
     private int blockSpawned = -1;
-    private bool gameover = false;
+    private bool gameover;
 
     public GameObject[][] Blocks;
     public GameObject Cube;
@@ -102,16 +101,19 @@ public class Manager : MonoBehaviour
 
     private void GameStep()
     {
-        if (this.moveIterator != null && this.moveIterator.MoveNext())
+        if (this.gui.IsAutoPlay())
         {
-            this.gameManager.MoveBlock((Move)this.moveIterator.Current);
-        }
+            if (this.moveIterator != null && this.moveIterator.MoveNext())
+            {
+                this.gameManager.MoveBlock((Move)this.moveIterator.Current);
+            }
 
-        if (this.blockSpawned != this.gameManager.GameStats.BlocksSpawned)
-        {
-            var steps = this.ai.GetNextMove(this.gameManager.BoardManager);
-            this.moveIterator = steps.Moves.GetEnumerator();
-            this.blockSpawned = this.gameManager.GameStats.BlocksSpawned;
+            if (this.blockSpawned != this.gameManager.GameStats.BlocksSpawned)
+            {
+                var steps = this.ai.GetNextMove(this.gameManager.BoardManager);
+                this.moveIterator = steps.Moves.GetEnumerator();
+                this.blockSpawned = this.gameManager.GameStats.BlocksSpawned;
+            }
         }
 
         if (this.gameManager.GameState.IsGameOver())
