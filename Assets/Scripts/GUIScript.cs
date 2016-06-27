@@ -38,7 +38,7 @@ public class GUIScript : MonoBehaviour
     private Rect timeRunningRect;
     private Rect totalRowRect;
     private Rect twoRowRect;
-    private static bool autoplayBool = true;
+    private static bool autoPlayEnabled = true;
     private static float speedHSliderValue = 1;
 
     // ReSharper disable once UnusedMember.Local
@@ -92,7 +92,7 @@ public class GUIScript : MonoBehaviour
         }
 
         GUI.Box(this.statsBoxRect, string.Empty);
-        autoplayBool = GUI.Toggle(this.autoplayRect, autoplayBool, string.Format("Auto play {0}", autoplayBool ? "ON" : "OFF"));
+        autoPlayEnabled = GUI.Toggle(this.autoplayRect, autoPlayEnabled, string.Format("Auto play {0}", autoPlayEnabled ? "ON" : "OFF"));
         this.avgRowsPerMin = this.rowscleared / this.time * 60;
         GUI.Label(this.timeRunningRect, "Time Running: " + PrettyTime((int)this.time));
         GUI.Label(this.oneRowRect, "1 Rows: " + this.oneRowsCleared);
@@ -114,7 +114,7 @@ public class GUIScript : MonoBehaviour
 
     public bool IsAutoPlay()
     {
-        return autoplayBool;
+        return autoPlayEnabled;
     }
 
     public void ToogleGameover()
