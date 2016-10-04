@@ -54,13 +54,13 @@ public class Manager : MonoBehaviour
             for (var column = 0; column < this.gameManager.BoardManager.GameBoard[row].Length; column++)
             {
                 var cube = Instantiate(this.Cube);
-                cube.transform.position = new Vector3(column / 2.5f, row / 2.5f, 0);
+                cube.transform.position = new Vector3(column / 2f, row / 2f, 0);
                 this.Blocks[row][column] = cube;
             }
         }
 
         this.LeftWall.transform.position = new Vector3(-0.4f, 4.5f);
-        this.RightWall.transform.position = new Vector3(10f/2.5f, 4.5f);
+        this.RightWall.transform.position = new Vector3(10f/2f, 4.5f);
     }
 
     private void Update()
