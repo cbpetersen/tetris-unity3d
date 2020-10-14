@@ -1,16 +1,11 @@
 ﻿using UnityEngine;
-
 using System.Collections;
-
 using Tetris.Engine;
 using Tetris.Engine.AI;
 using Tetris.Engine.AI.Algorithms;
 using Tetris.Engine.AI.Algorithms.Weights;
-
 using UnityEngine.SceneManagement;
-
 using Move = Tetris.Engine.Move;
-
 public class Manager : MonoBehaviour
 {
     private Engine ai;
@@ -22,11 +17,8 @@ public class Manager : MonoBehaviour
 
     public GameObject[][] Blocks;
     public GameObject Cube;
-    public Transform LeftWall;
-    public Transform RightWall;
-
+    public Transform LeftWall,RightWall;
     private IEnumerator moveIterator;
-
     private void Start()
     {
         this.gui = this.GetComponent<GUIScript>();
@@ -42,13 +34,11 @@ public class Manager : MonoBehaviour
                             RowsCleared = -2.0772042300000000f,
                             WellSums = 0.4410647000000000f
                         }));
-
         this.Blocks = new GameObject[20][];
         for (var i = 0; i < 20; i++)
         {
             this.Blocks[i] = new GameObject[10];
         }
-
         for (var row = this.gameManager.BoardManager.GameBoard.GetLength(0) - 1; row >= 0; row--)
         {
             for (var column = 0; column < this.gameManager.BoardManager.GameBoard[row].Length; column++)
@@ -58,16 +48,13 @@ public class Manager : MonoBehaviour
                 this.Blocks[row][column] = cube;
             }
         }
-
         this.LeftWall.transform.position = new Vector3(-0.4f, 4.5f);
         this.RightWall.transform.position = new Vector3(10f/2f, 4.5f);
     }
-
     private void Update()
     {
         var gameBoard = this.gameManager.BoardManager.GameBoard;
         var activeBlock = this.gameManager.ActiveBlock;
-
         for (var row = gameBoard.GetLength(0) - 1; row >= 0; row--)
         {
             for (var column = 0; column < gameBoard[row].Length; column++)
@@ -82,10 +69,8 @@ public class Manager : MonoBehaviour
                 }
             }
         }
-
         this.gui.UpdateScore(this.gameManager.GameStats);
     }
-
     private void FixedUpdate()
     {
         for (var i = 0; i < this.gui.GetGameSpeed(); i++)
@@ -94,11 +79,9 @@ public class Manager : MonoBehaviour
             {
                 return;
             }
-
             this.GameStep();
         }
     }
-
     private void GameStep()
     {
         if (this.gui.IsAutoPlay())
@@ -115,7 +98,6 @@ public class Manager : MonoBehaviour
                 this.blockSpawned = this.gameManager.GameStats.BlocksSpawned;
             }
         }
-
         if (this.gameManager.GameState.IsGameOver())
         {
             this.gameover = true;
@@ -126,12 +108,10 @@ public class Manager : MonoBehaviour
             this.gameManager.OnGameLoopStep();
         }
     }
-
     public void MoveBlock(Move move)
     {
         this.gameManager.MoveBlock(move);
     }
-
     public IEnumerator GameOver()
     {
         Debug.Log ("Game Over!");
